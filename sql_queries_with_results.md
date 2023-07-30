@@ -1,5 +1,5 @@
 
-Based on the provided schema, I created database, tables and columns using MYSQL Workbench.
+-- Based on the provided schema, I created database, tables and columns using MYSQL Workbench.
 
 -- creating database 
 CREATE DATABASE dannys_diner;
@@ -10,8 +10,8 @@ USE dannys_diner;
 -- creating tables as per schema 
 CREATE TABLE sales (
 	customer_id VARCHAR(1),
-    order_date DATE,
-    product_id INT
+   	order_date DATE,
+    	product_id INT
     );
     
 CREATE TABLE members (
