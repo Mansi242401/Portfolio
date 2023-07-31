@@ -8,5 +8,5 @@ A portfolio showcasing case studies in SQL
 
 **Python Projects**
 
-**1. Cleaning Patients data** - [Code](https://github.com/Mansi242401/Data_Wrangling/tree/main)
+**1. Cleaning Patients data** - [Code](https://github.com/Mansi242401/Data_Wrangling/tree/main) <br>
 **2. Exploratory Data Analysis - Weather Data** - [Code]()
