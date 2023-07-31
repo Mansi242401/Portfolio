@@ -8,4 +8,4 @@ A portfolio showcasing case studies in SQL
 
 **Python Projects**
 
-**1. Cleaning Patients data** - [Code]
+**1. Cleaning Patients data** - [Code](https://github.com/Mansi242401/Data_Wrangling/tree/main)
