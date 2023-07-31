@@ -1,5 +1,5 @@
 # Portfolio - Data Analysis
-A portfolio showcasing case studies in SQL 
+A portfolio showcasing case studies in SQL and Python
 
 ## SQL Projects
 
