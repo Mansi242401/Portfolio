@@ -14,3 +14,5 @@ A portfolio showcasing case studies in SQL and Python
 
 **2. Exploratory Data Analysis - Movies Data**
 * [Code](https://github.com/Mansi242401/EDA_movies) <br>
+
+**2. Pizza Runner**
