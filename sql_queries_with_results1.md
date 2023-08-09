@@ -2,8 +2,9 @@
 -- Based on the provided schema, I created database, tables and columns using MYSQL Workbench.
 
 -- creating database 
+```
 CREATE DATABASE dannys_diner;
-
+```
 -- selecting the database to use for extracting data
 USE dannys_diner;
 
