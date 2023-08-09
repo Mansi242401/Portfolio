@@ -17,18 +17,21 @@ CREATE TABLE sales (
    	order_date DATE,
     	product_id INT
     );
-``` 
+```
+```sql
 CREATE TABLE members (
 	customer_id VARCHAR(1),
     join_date TIMESTAMP
     );
-    
+```
+```sql
 CREATE TABLE menu (
 	product_id INT,
     product_name VARCHAR(5),
     price INT);
 ```
 -- Inserting values in the above created tables    
+```sql
 INSERT INTO sales
 VALUES
   ('A', '2021-01-01', '1'),
@@ -46,7 +49,7 @@ VALUES
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-07', '3');
-
+```
 INSERT INTO members
 VALUES
   ('A', '2021-01-07'),
