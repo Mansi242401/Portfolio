@@ -17,7 +17,7 @@ CREATE TABLE sales (
    	order_date DATE,
     	product_id INT
     );
-    
+``` 
 CREATE TABLE members (
 	customer_id VARCHAR(1),
     join_date TIMESTAMP
