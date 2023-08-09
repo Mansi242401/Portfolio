@@ -85,6 +85,7 @@ GROUP BY cust_id;
 | B        | 74       | 
 | C        | 36       |
 
+
 2. How many days has each customer visited the restaurant?
 
 **Query:**
@@ -102,6 +103,7 @@ GROUP BY cust_id;
 | A        | 4           | 
 | B        | 6           | 
 | C        | 2           |
+
 
 3. What was the first item from the menu purchased by each customer?
 
@@ -133,6 +135,7 @@ WHERE item_rank = 1;
 | C        | ramen   |
 | C        | ramen   |
 
+
 4. What is the most purchased item on the menu and how many times was it purchased by all customers?
 
 **Query:**
@@ -152,6 +155,7 @@ lIMIT 1;
 | item   |item_count| 
 |--------|----------|
 | ramen  | 8        | 
+
 
 5. Which item was the most popular for each customer?
 -- Popularity here means the item ordered the most by each customer
@@ -186,6 +190,7 @@ ORDER BY customer;
 | B        | curry  |
 | B        | ramen  |
 | C        | ramen  |
+
 
 
 6. Which item was purchased first by the customer after they became a member?
@@ -254,6 +259,7 @@ WHERE order_rank = 1;
 | A        | curry  |
 | B        | sushi  |
 
+
 8. What is the total items and amount spent for each member before they became a member?
 
 **Query:**
@@ -277,6 +283,7 @@ GROUP BY customer;
 |----------|-------------|------------
 | B        | 3           |  40       |
 | A        | 2           |  25       |
+
 
 9. If each $1 spent equates to 10 points and sushi has a 2x points multiplier - how many points would each customer have?
 
@@ -310,6 +317,7 @@ GROUP BY customer;
 | A         | 470          | 
 | B         | 470          |
 | C         | 120          |
+
 
 10. In the first week after a customer joins the program (including their join date) 
 they earn 2x points on all items, not just sushi - how many points do customer A and B have at the end of January?
@@ -345,6 +353,7 @@ GROUP BY customer;
 |----------|--------|
 | B        | 940    | 
 | A        | 1370   |
+
 
 **Bonus Questions**
 
@@ -416,22 +425,21 @@ FROM t0;
 ```
 **Resulting table:**
 
-customer_id	order_date	product_name	price	member	ranking
-	A	2021-01-01	sushi	         10	  N	 NULL
-	A	2021-01-01	curry	         15	  N	 NULL
-	A	2021-01-07	curry	         15 	  Y	 1
-	A	2021-01-10	ramen	         12	  Y	 2
-	A	2021-01-11	ramen	         12	  Y	 3
-	A	2021-01-11	ramen	         12	  Y	 3
-	B	2021-01-01	curry	         15	  N	 NULL
-	B	2021-01-02	curry	         15	  N	 NULL
-	B	2021-01-04	sushi	         10	  N	 NULL
-	B	2021-01-11	sushi	         10	  Y	 1
-	B	2021-01-16	ramen	         12	  Y	 2
-	B	2021-02-01	ramen	         12	  Y	 3
-	C	2021-01-01	ramen	         12	  N	 NULL
-	C	2021-01-01	ramen	         12	  N	 NULL
-	C	2021-01-07	ramen	         12	  N	 NULL
-
-
+| customer_id | order_date | product_name | price | member | ranking |
+|-------------|------------|--------------|-------|--------|---------|
+| A           | 2021-01-01 | sushi        | 10    | N      | NULL    |
+| A           | 2021-01-01 | curry        | 15    | N      | NULL    |
+| A           | 2021-01-07 | curry        | 15    | Y      | 1       |
+| A           | 2021-01-10 | ramen        | 12    | Y      | 2       |
+| A           | 2021-01-11 | ramen        | 12    | Y      | 3       |
+| A           | 2021-01-11 | ramen        | 12    | Y      | 3       |
+| B           | 2021-01-01 | curry        | 15    | N      | NULL    |
+| B           | 2021-01-02 | curry        | 15    | N      | NULL    |
+| B           | 2021-01-04 | sushi        | 10    | N      | NULL    |
+| B           | 2021-01-11 | sushi        | 10    | Y      | 1       |
+| B           | 2021-01-16 | ramen        | 12    | Y      | 2       |
+| B           | 2021-02-01 | ramen        | 12    | Y      | 3       |
+| C           | 2021-01-01 | ramen        | 12    | N      | NULL    |
+| C           | 2021-01-01 | ramen        | 12    | N      | NULL    |
+| C           | 2021-01-07 | ramen        | 12    | N      | NULL    |
 
