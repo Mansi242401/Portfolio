@@ -50,23 +50,25 @@ VALUES
   ('C', '2021-01-01', '3'),
   ('C', '2021-01-07', '3');
 ```
+```sql
 INSERT INTO members
 VALUES
   ('A', '2021-01-07'),
   ('B', '2021-01-09');
-  
+```
+```sql
 INSERT INTO menu
 VALUES 
   ('1', 'sushi', '10'),
   ('2', 'curry', '15'),
   ('3', 'ramen', '12');
-  
+```
 
 **Case Study Questions**
 1. What is the total amount each customer spent at the restaurant?
 
 **Query:**
-
+```sql
 SELECT 
 	s.customer_id as cust_id,
     SUM(m.price) as total_amt
@@ -74,7 +76,7 @@ FROM sales s
 JOIN menu m
 ON s.product_id = m.product_id
 GROUP BY cust_id;
-
+```
 **Resulting table:**
 
 | cust_id  |total_amt | 
@@ -87,13 +89,13 @@ GROUP BY cust_id;
 2.How many days has each customer visited the restaurant?
 
 **Query:**
-
+```sql
 SELECT 
 	customer_id as cust_id,
     COUNT(DISTINCT order_date) as days_visited
 FROM sales
 GROUP BY cust_id;
-
+```
 **Resulting table:**
 
 | cust_id  |days_visited | 
@@ -106,7 +108,7 @@ GROUP BY cust_id;
 3. What was the first item from the menu purchased by each customer?
 
 **Query:**
-
+```sql
 WITH t0 as
 (
 SELECT
@@ -122,7 +124,7 @@ SELECT
     item
 FROM t0 
 WHERE item_rank = 1;
-
+```
 **Resulting table:**
 
 | cust_id  |item     | 
