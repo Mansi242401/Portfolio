@@ -6,9 +6,12 @@
 CREATE DATABASE dannys_diner;
 ```
 -- selecting the database to use for extracting data
+```sql
 USE dannys_diner;
+```
 
 -- creating tables as per schema 
+```sql
 CREATE TABLE sales (
 	customer_id VARCHAR(1),
    	order_date DATE,
@@ -24,7 +27,7 @@ CREATE TABLE menu (
 	product_id INT,
     product_name VARCHAR(5),
     price INT);
-
+```
 -- Inserting values in the above created tables    
 INSERT INTO sales
 VALUES
