@@ -256,6 +256,7 @@ COUNT(pizza_id) as pizza_count
 FROM CTE 
 GROUP BY DayOfWeek;
 ```
+
 **Result:**
 |DayOfWeek|pizza_count|
 |---|---|
