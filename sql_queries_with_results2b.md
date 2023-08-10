@@ -12,7 +12,7 @@
 - [What was the total volume of pizzas ordered for each hour of the day?](###What-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day?)
 - [What was the volume of orders for each day of the week?](###What-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day?)
 
-
+<a name="How-many-pizzas-were-ordered?"></a>
 ### How many pizzas were ordered?
 **Query:**
 ```sqlSELECT 
@@ -24,6 +24,7 @@ FROM customer_orders;
 |---|
 |13|
 
+<a name="How-many-unique-customer-orders-were-made?"></a>
 ### How many unique customer orders were made?
 **Query:**
 ```sql
@@ -36,6 +37,7 @@ FROM customer_orders;
 |---|
 |10|
 
+<a name="How-many-successful-orders-were-delivered-by-each-runner?"></a>
 ### How many successful orders were delivered by each runner?
 
 Successful orders are those which are not cancelled by either party
@@ -79,6 +81,7 @@ GROUP BY c.pizza_id;
 |1|8|
 |2|3|
 
+<a name="How-many-Vegetarian-and-Meatlovers-were-ordered-by-each-customer?"></a>
 ### How many Vegetarian and Meatlovers were ordered by each customer?
 
 For this one, we need to join the `pizza_names` table in order to get the names of the pizzas ordered and then convert the row values into columns and their count as row value using pivot
