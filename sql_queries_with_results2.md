@@ -52,9 +52,8 @@ CREATE TABLE pizza_toppings (
     topping_name TEXT
     );
 ```
-
--- Populating tables - Again, the data is not following normalisation forms, hence messy data is beinig fed here. 
--- However, in real world this should be complying the normalization forms. But, we can always encounter messy data when working with already populated dataset.
+Populating tables - Again, the data is not following normalisation forms, hence messy data is beinig fed here. 
+However, in real world this should be complying the normalization forms. But, we can always encounter messy data when working with already populated dataset.
 ```sql
 INSERT INTO runners 
 VALUES
@@ -123,16 +122,17 @@ VALUES
 (11, 'Tomatoes'),
 (12, 'Tomato Sauce');
 ```
--- Before we answer the metrics questions, let's identify the dirty data and clean the tables - customer_orders and runner_orders
--- Identify issues in customer_orders
+Before we answer the metrics questions, let's identify the dirty data and clean the tables - customer_orders and runner_orders
 
--- 1. Insert NULL values in columns - extras and exclusions replacing the empty strings and 'null' strings 
--- NULL is the standard way to indicate the absence of a value in a database column and is considered better practice than putting empty string
+Identify issues in customer_orders
 
+1. Insert NULL values in columns - extras and exclusions replacing the empty strings and 'null' strings
+  
+   NULL is the standard way to indicate the absence of a value in a database column and is considered better practice than putting empty string
+```sql
 UPDATE customer_orders
 SET 	
 	exclusions = CASE WHEN exclusions = '' OR exclusions = 'null' THEN NULL ELSE exclusions END,
     extras = CASE WHEN extras = '' OR extras = 'null' THEN NULL ELSE extras END;
-
-
+```
 
