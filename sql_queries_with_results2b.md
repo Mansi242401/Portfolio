@@ -307,10 +307,172 @@ GROUP BY week_of_the_month;
 |WEEK 3|1|
 
 <a name="2RCE"></a>
+### What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?
+The time taken by runner would be the difference between the time when the order was placed and the time when order was picked
+**Query:**
+```sql
+SELECT
+r.runner_id,
+AVG(DATEDIFF(mi, c.order_date, r.pickup_time)) AS avg_time_diff
+from runner_orders r
+JOIN customer_orders c
+ON r.order_id = c.order_id
+GROUP BY r.runner_id;
+```
 
+**Result:**
+|runner_id|avg_time_diff|
+|---|---|
+|1|15|
+|2|22|
+|3|10|
 
+<a name="3RCE"></a>
+### Is there any relationship between the number of pizzas and how long the order takes to prepare?
+Again the time to prepare the pizza is the difference between the time when it was ordered and the time it was picked up, next we count the number of pizzas in each order and then find the avg time taken and group it by the number of pizzas ordered in each order
+**Query:**
+```sql
+WITH t0 AS
+(
+    SELECT
+order_id,
+COUNT(pizza_id) as pizza_count
+FROM customer_orders
+GROUP BY order_id
+),
+t1 AS
+(
+SELECT
+r.order_id,
+DATEDIFF(mi, c.order_date, r.pickup_time) AS time_diff
+from runner_orders r
+JOIN customer_orders c
+ON r.order_id = c.order_id
+WHERE r.cancellation IS NULL
+), t2 AS
+(
+SELECT 
+DISTINCT 
+t0.order_id,
+t0.pizza_count as pizza_count,
+t1.time_diff as time_diff
+FROM t0 
+join t1 ON t0.order_id = t1.order_id
+)
+SELECT t2.pizza_count,
+AVG(t2.time_diff) as avg_time_taken
+FROM t2
+GROUP BY t2.pizza_count;
+```
+**Result:**
+|pizza_count|avg_time_taken|
+|---|---|
+|1|12|
+|2|22|
+We do find that time to prepare is roughly 80 % more when 2 pizzas were ordered as compared to when one pizza was ordered
 
+<a name="4RCE"></a>
+### What was the average distance travelled for each customer?
 
+**Query:**
+```sql
+SELECT c.customer_id, ROUND(AVG(r.distance),2) as avg_distance_KM FROM customer_orders c
+JOIN runner_orders r on c.order_id = r.order_id
+WHERE r.cancellation IS NULL
+GROUP BY c.customer_id;
+```
 
+**Result:**
+|customer_id|avg_distance_KM|
+|---|---|
+|101|20.000000|
+|102|16.730000|
+|103|23.400000|
+|104|10.000000|
+|105|25.000000|
+
+<a name="5RCE"></a>
+### What was the difference between the longest and shortest delivery times for all orders?
+**Query:**
+```sql
+SELECT MAX(duration) - MIN(duration) AS delivery_time_diff 
+FROM runner_orders;
+```
+
+**Result:**
+|delivery_time_diff|
+|---|
+|30|
+
+<a name="6RCE"></a>
+### What was the average speed for each runner for each delivery and do you notice any trend for these values?
+For this one, we will first calculate the speed by using the formula - distance/time since we are finding for each order, we will use distinct before order_id
+**Query:**
+```sql
+WITH CTE AS
+(
+SELECT DISTINCT order_id, runner_id, distance, duration
+FROM runner_orders
+WHERE duration IS NOT NULL
+)
+SELECT order_id,
+runner_id,
+ROUND((CAST(distance AS FLOAT) / CAST(duration AS FLOAT)) * 60, 2) as avg_speed
+FROM CTE
+```
+**Result:**
+|order_id|runner_id|avg_speed|
+|---|---|---|
+|1|1|37.5|
+|2|1|44.44|
+|3|1|40.2|
+|4|2|35.1|
+|5|3|40|
+|7|2|60|
+|8|2|93.6|
+|10|1|60|
+
+<a name="7RCE"></a>
+### What is the successful delivery percentage for each runner?
+successful delivery percentage would be orders that are not cancelled divided by the total orders and converted into percentage and then grouped for each runner
+
+**Query:**
+```sql
+WITH cancellation_counter AS (
+SELECT
+	runner_id,
+    CASE
+    	WHEN cancellation IS NULL OR cancellation = 'NaN' THEN 1
+	ELSE 0
+    END AS no_cancellation_count,
+    CASE
+    	WHEN cancellation IS NOT NULL OR cancellation != 'NaN' THEN 1
+	ELSE 0
+    END AS cancellation_count
+FROM runner_orders
+) 
+,t0 AS
+( 
+SELECT 
+	runner_id,
+    sum(no_cancellation_count) AS no_can_ct,
+    SUM(cancellation_count) AS can_ct,
+    SUM(no_cancellation_count) + SUM(cancellation_count) AS total_orders
+FROM cancellation_counter
+GROUP BY runner_id
+)
+SELECT runner_id, 
+(CAST(no_can_ct AS float)/total_orders)*100 as ratio
+FROM t0;
+```
+
+**Result:**
+|runner_id|ratio|
+|---|---|
+|1|100|
+|2|75|
+|3|50|
+
+the results suggest that none of the orders were cancelled for Runner 1 and hence he successfully delivered all orders, runner 2 delivered 75% of all orders and runner 3 delivered 50% of all orders
 
 
