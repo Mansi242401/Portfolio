@@ -270,7 +270,9 @@ SELECT * FROM runner_orders;
 
 The above query results suggest that all empty stings and 'null' strings are replaced with NULL values
 
-**4.Issue:** Remove extra string from distance and duration column
+**4.Issue:** There are unwanted strings like 'km' and 'minutes' in distance and duration columns respectively
+
+**Solution:** Remove extra string from distance and duration column
 
 **Query:**
 ```sql
@@ -310,5 +312,28 @@ SELECT * FROM runner_orders;
 |10|1|2020-01-11 18:50:20|10|10|NULL|
 
 From the above result, we can see that all unrequired strings like "kms" and "min" are removed from distance and duration columns
+
+**5. Issue:** The data type of column pickup time, distance and duration is VARCHAR which should be DATETIME, DECIMAL and INT respectively
+
+**Solution:** Change data type of the columns - pickup_time, distance, duration
+
+**Query:**
+```sql
+ALTER TABLE runner_orders
+ALTER COLUMN pickup_time DATETIME;
+```
+```sql
+ALTER TABLE runner_orders
+ALTER COLUMN distance DECIMAL(10, 2);
+```
+```sql
+ALTER TABLE runner_orders
+ALTER COLUMN duration INT;
+```
+**Test:**
+```sql
+SELECT * FROM runner_orders;
+```
+***Result:***
 
 
