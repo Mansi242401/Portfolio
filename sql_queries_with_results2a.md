@@ -37,7 +37,7 @@ CREATE TABLE customer_orders (
 ```sql
 CREATE TABLE pizza_names (
 	pizza_id INT,
-    pizza_name TEXT
+    pizza_name VARCHAR(MAX)
     );
 ```
 ```sql
