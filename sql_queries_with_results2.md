@@ -1,6 +1,6 @@
 ### Case Study #2 - Pizza Runner
 
-#### For this case study I have used MS SQL Server to execute the queries 
+#### For this case study I have used MS SQL Server 1.45.0 to execute the queries 
 
 Create a database named pizza_runner
 ```sql
@@ -332,8 +332,17 @@ ALTER COLUMN duration INT;
 ```
 **Test:**
 ```sql
-SELECT * FROM runner_orders;
+exec sp_columns runner_orders;
 ```
 ***Result:***
+|TABLE_QUALIFIER|TABLE_OWNER|TABLE_NAME|COLUMN_NAME|DATA_TYPE|TYPE_NAME|PRECISION|LENGTH|SCALE|RADIX|NULLABLE|REMARKS|COLUMN_DEF|SQL_DATA_TYPE|SQL_DATETIME_SUB|CHAR_OCTET_LENGTH|ORDINAL_POSITION|IS_NULLABLE|SS_DATA_TYPE|
+|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
+|pizza_runner|dbo|runner_orders|order_id|4|int|10|4|0|10|1|NULL|NULL|4|NULL|NULL|1|YES|38|
+|pizza_runner|dbo|runner_orders|runner_id|4|int|10|4|0|10|1|NULL|NULL|4|NULL|NULL|2|YES|38|
+|pizza_runner|dbo|runner_orders|pickup_time|11|datetime|23|16|3|NULL|1|NULL|NULL|9|3|NULL|3|YES|111|
+|pizza_runner|dbo|runner_orders|distance|3|decimal|10|12|2|10|1|NULL|NULL|3|NULL|NULL|4|YES|106|
+|pizza_runner|dbo|runner_orders|duration|4|int|10|4|0|10|1|NULL|NULL|4|NULL|NULL|5|YES|38|
+|pizza_runner|dbo|runner_orders|cancellation|12|varchar|23|23|NULL|NULL|1|NULL|NULL|12|NULL|23|6|YES|39|
 
+Refer the `Column_Name` and `Type_Name` columns to check the data type. The data types are changed now
 
