@@ -268,4 +268,34 @@ SELECT * FROM runner_orders;
 |9|2|NULL|NULL|NULL|Customer Cancellation|
 |10|1|2020-01-11 18:50:20|10km|10minutes|NULL|
 
+The above query results suggest that all empty stings and 'null' strings are replaced with NULL values
+
+**4.Issue:** Remove extra string from distance and duration column
+
+**Query:**
+```sql
+UPDATE runner_orders
+SET distance = CASE
+    WHEN PATINDEX('%[a-zA-Z]%', distance) > 0
+        THEN REPLACE(distance, SUBSTRING(distance, PATINDEX('%[a-zA-Z]%', distance), LEN(distance)), '')
+    ELSE ''
+    END
+WHERE PATINDEX('%[a-zA-Z]%', distance) > 0;
+```
+```sql
+UPDATE runner_orders
+SET duration = CASE
+    WHEN PATINDEX('%[a-zA-Z]%', duration) > 0
+        THEN REPLACE(duration, SUBSTRING(duration, PATINDEX('%[a-zA-Z]%', duration), LEN(duration)), '')
+    ELSE ''
+    END
+WHERE PATINDEX('%[a-zA-Z]%', duration) > 0;
+```
+**Test:**
+```sql
+SELECT * FROM runner_orders;
+```
+
+From the above result, we can see that all unrequired strings like "kms" and "min" are removed from distance and duration columns
+
 
