@@ -146,7 +146,8 @@ SELECT * FROM customer_orders;
 |10|104|1|null|null|2020-01-11 18:34:49.000|
 |10|104|1|2, 6|1, 4|2020-01-11 18:34:49.000|
 
-Identify issues in customer_orders <br>
+<b>Identify issues in customer_orders <br></b>
+
 **Issue:** We can clearly see that there are empty strings and 'null' strings in the extras and exclusions column.NULL is the standard way to indicate the absence of a value in a database column and is considered better practice than putting empty string. Hence, we will replace these with NULL. <br>
 **Solution:**
 
