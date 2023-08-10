@@ -148,7 +148,8 @@ SELECT * FROM customer_orders;
 
 <b>Identify issues in customer_orders <br></b>
 
-**1. Issue:** We can clearly see that there are empty strings and 'null' strings in the extras and exclusions column.NULL is the standard way to indicate the absence of a value in a database column and is considered better practice than putting empty string. Hence, we will replace these with NULL. <br>
+**1. Issue:** We can clearly see that there are empty strings and 'null' strings in the extras and exclusions column.NULL is the standard way to indicate the absence of a value in a database column and is considered better practice than putting empty string. Hence, we will replace these with NULL. 
+
 **Solution:**
 Insert NULL values in columns - extras and exclusions replacing the empty strings and 'null' strings
 
