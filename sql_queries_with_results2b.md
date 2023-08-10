@@ -19,7 +19,7 @@
 	COUNT(pizza_id) as pizza_count
 FROM customer_orders;
 ```
-**Result:*
+**Result:**
 |pizza_count|
 |---|
 |13|
