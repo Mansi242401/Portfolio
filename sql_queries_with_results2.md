@@ -124,6 +124,11 @@ VALUES
 ```
 Before we answer the metrics questions, let's identify the dirty data and clean the tables - customer_orders and runner_orders
 
+```sql
+SELECT * FROM customer_orders;
+```
+
+
 Identify issues in customer_orders
 
 1. Insert NULL values in columns - extras and exclusions replacing the empty strings and 'null' strings
