@@ -2,7 +2,7 @@
 # Pizza Metrics
 
 [How many pizzas were ordered?] (#How-many-pizzas-were-ordered?)
-[How many unique customer orders were made?]
+[How many unique customer orders were made?](#How-many-unique-customer-orders-were-made?)
 [How many successful orders were delivered by each runner?]
 [How many of each type of pizza was delivered?]
 [How many Vegetarian and Meatlovers were ordered by each customer?]
@@ -14,6 +14,8 @@
 
 
 ## How many pizzas were ordered?
+
+## How many unique customer orders were made?
 
 
 
