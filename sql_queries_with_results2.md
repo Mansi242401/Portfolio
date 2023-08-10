@@ -160,6 +160,11 @@ SET
 	exclusions = CASE WHEN exclusions = '' OR exclusions = 'null' THEN NULL ELSE exclusions END,
     extras = CASE WHEN extras = '' OR extras = 'null' THEN NULL ELSE extras END;
 ```
+**Test:**
+
+```sql
+SELECT * FROM customer_orders;
+```
 **Result:**
 
 |order_id|customer_id|pizza_id|exclusions|extras|order_date|
@@ -181,4 +186,30 @@ SET
 
 We can observe in the above result that all empty strings and 'null' strings are converted to NULL values<br>
 
-**2. Issue:**
+**2. Issue:** We observe that there is a duplicate record for Order Id 4
+
+**Solution:** Remove all Duplicate rows 
+
+**Query:**
+```sql
+WITH CTE AS
+(
+SELECT 
+        order_id,
+        customer_id,
+        pizza_id,
+        COALESCE(exclusions, '0') AS exclusions,
+        COALESCE(extras,'0') AS extras,
+        order_date,
+        ROW_NUMBER() OVER (PARTITION BY order_id, customer_id, pizza_id, exclusions, extras, order_date ORDER BY order_date) AS temp
+    FROM customer_orders
+)
+DELETE FROM CTE WHERE temp > 1;
+```
+**Test:**
+```sql
+SELECT * FROM customer_orders;
+```
+**Result:**
+
+
