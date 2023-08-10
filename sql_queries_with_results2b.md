@@ -1,4 +1,5 @@
 ### Case Study #2 - Pizza Runner
+You can click on the specific question to navigate to that question's solution
 #### Pizza Metrics
 
 - [How many pizzas were ordered?](#How-many-pizzas-were-ordered?)
