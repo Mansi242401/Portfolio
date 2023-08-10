@@ -8,10 +8,10 @@ You can click on the specific question to navigate to that question's solution
 - [How many of each type of pizza was delivered?](#How-many-of-each-type-of-pizza-was-delivered?)
 - [How many Vegetarian and Meatlovers were ordered by each customer?](#How-many-Vegetarian-and-Meatlovers-were-ordered-by-each-customer?)
 - [What was the maximum number of pizzas delivered in a single order?](#What-was-the-maximum-number-of-pizzas-delivered-in-a-single-order?)
-- [For each customer, how many delivered pizzas had at least 1 change and how many had no changes?](###For-each-customer,-how-many-delivered-pizzas-had-at-least-1-change-and-how-many-had-no-changes?)
-- [How many pizzas were delivered that had both exclusions and extras?](###How-many-pizzas-were-delivered-that-had-both-exclusions-and-extras?)
-- [What was the total volume of pizzas ordered for each hour of the day?](###What-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day?)
-- [What was the volume of orders for each day of the week?](###What-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day?)
+- [For each customer, how many delivered pizzas had at least 1 change and how many had no changes?](#For-each-customer,-how-many-delivered-pizzas-had-at-least-1-change-and-how-many-had-no-changes?)
+- [How many pizzas were delivered that had both exclusions and extras?](#How-many-pizzas-were-delivered-that-had-both-exclusions-and-extras?)
+- [What was the total volume of pizzas ordered for each hour of the day?](#What-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day?)
+- [What was the volume of orders for each day of the week?](#What-was-the-volume-of-orders-for-each-day-of-the-week?)
 
 <a name="How-many-pizzas-were-ordered?"></a>
 ### How many pizzas were ordered?
@@ -47,17 +47,19 @@ Successful orders are those which are not cancelled by either party
 ```sql
 SELECT 
 	runner_id, 
-	count(runner_id) 
+	count(runner_id) AS pizza_count
 FROM runner_orders
 WHERE cancellation IS NULL
 GROUP BY runner_id;
 ```
 **Result:**
-|runner_id|(No column name)|
+|runner_id|pizza_count|
 |---|---|
 |1|4|
 |2|3|
 |3|1|
+
+Runner 1 has delivered the most orders, then runner 2 has delivered 3 orders.
 
 <a name="How-many-of-each-type-of-pizza-was-delivered?"></a>
 ### How many of each type of pizza was delivered?
@@ -81,6 +83,8 @@ GROUP BY c.pizza_id;
 |---|---|
 |1|8|
 |2|3|
+
+Majority delivered pizzas are of type 1 which is Meat Lovers.We break it down further by each customer
 
 <a name="How-many-Vegetarian-and-Meatlovers-were-ordered-by-each-customer?"></a>
 ### How many Vegetarian and Meatlovers were ordered by each customer?
@@ -117,6 +121,7 @@ PIVOT (
 |104|3|NULL|
 |105|NULL|1|
 
+We can observe that Customer 101, 102 and 103 ordered 2 meat lovers and 1 vegetarian pizza each. Customer 104 ordered only 3 Meatlovers and 105 ordered 1 vegetarian pizza
 
 <a name="What-was-the-maximum-number-of-pizzas-delivered-in-a-single-order?"></a>
 ### What was the maximum number of pizzas delivered in a single order?
@@ -148,6 +153,7 @@ ORDER BY pizza_count DESC;
 |7|1|
 |8|1|
 
+We observe that a single order had maximum 2 pizzas ordered
 
 <a name="For-each-customer,-how-many-delivered-pizzas-had-at-least-1-change-and-how-many-had-no-changes?"></a>
 ### For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
@@ -175,16 +181,93 @@ ORDER BY customer_id;
 |105|1|0|
 
 
+<a name="How-many-pizzas-were-delivered-that-had-both-exclusions-and-extras?"></a>
+### How many pizzas were delivered that had both exclusions and extras?
+**Query:**
+```sql
+SELECT pizza_id,
+	COUNT(CASE WHEN exclusions <> '' AND extras <> '' THEN 1 END) AS exclusions_extras_count
+FROM customer_orders c 
+JOIN runner_orders r 
+ON c.order_id = r.order_id
+WHERE cancellation IS NULL
+GROUP BY pizza_id
+ORDER BY pizza_id;
+```
 
+***Result:**
+|pizza_id|exclusions_extras_count|
+|---|---|
+|1|1|
+|2|0|
 
-
-
-
-
-
-
-
+<a name="What-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day?"></a>
 ### What was the total volume of pizzas ordered for each hour of the day?
+In this one, first we will extract the hour from the `order_date` column and then find the pizza count and group it by hour
+**Query:**
+```sql
+WITH CTE AS(
+SELECT 
+pizza_id,
+DATEPART(hour, [order_date]) AS order_hour
+FROM customer_orders
+)
+SELECT order_hour,
+COUNT(pizza_id) as pizza_count
+FROM CTE 
+GROUP BY order_hour;
+```
+
+**Result:**
+|order_hour|pizza_count|
+|---|---|
+|11|1|
+|13|2|
+|18|3|
+|19|1|
+|21|3|
+|23|3|
+
+We observe that majority pizzas were ordered for dinner.
+
+<a name="What-was-the-volume-of-orders-for-each-day-of-the-week?"></a>
+### What was the volume of orders for each day of the week?
+First step in this one is to find the day of the week for all records and then count the orders and group them by the day of the week
+
+**Query:**
+```sql
+WITH CTE AS
+(
+SELECT 
+pizza_id,
+CASE DATEPART(DW, order_date)
+        WHEN 1 THEN 'Sunday'
+        WHEN 2 THEN 'Monday'
+        WHEN 3 THEN 'Tuesday'
+        WHEN 4 THEN 'Wednesday'
+        WHEN 5 THEN 'Thursday'
+        WHEN 6 THEN 'Friday'
+        WHEN 7 THEN 'Saturday'
+    END AS DayOfWeek
+FROM customer_orders
+)
+SELECT DayOfWeek,
+COUNT(pizza_id) as pizza_count
+FROM CTE 
+GROUP BY DayOfWeek;
+```
+**Result:**
+|DayOfWeek|pizza_count|
+|---|---|
+|Friday|1|
+|Saturday|4|
+|Thursday|3|
+|Wednesday|5|
+
+We observe that majority orders were made on Wednesdays and then on Saturday and Thursday.
+
+
+
 
 
 
