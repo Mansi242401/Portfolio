@@ -10,7 +10,8 @@ A portfolio showcasing case studies in SQL and Python
 **2. Pizza Runner**
 * This project is divided into two parts -<br>
   1. Data Cleaning - Code for which is [here](https://github.com/Mansi242401/Portfolio/blob/main/sql_queries_with_results2a.md) and <br>
-  2. Answering questions with Queries - Code is [here]
+  2. Answering questions with Queries - Code is [here](https://github.com/Mansi242401/Portfolio/blob/main/sql_queries_with_results2b.md)
+     
 * This is part of the 8 week SQL Challenge, by Danny Ma. You can find his challenge here: https://8weeksqlchallenge.com/case-study-2/
   
 ## Python Projects
