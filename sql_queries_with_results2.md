@@ -146,16 +146,37 @@ SELECT * FROM customer_orders;
 |10|104|1|null|null|2020-01-11 18:34:49.000|
 |10|104|1|2, 6|1, 4|2020-01-11 18:34:49.000|
 
-Identify issues in customer_orders
-**Issue:** We can clearly see that there are empty strings and 'null' strings in the extras and exclusions column.NULL is the standard way to indicate the absence of a value in a database column and is considered better practice than putting empty string. Hence, we will replace these with NULL.
+Identify issues in customer_orders <br>
+**Issue:** We can clearly see that there are empty strings and 'null' strings in the extras and exclusions column.NULL is the standard way to indicate the absence of a value in a database column and is considered better practice than putting empty string. Hence, we will replace these with NULL. <br>
 **Solution:**
 
 1. Insert NULL values in columns - extras and exclusions replacing the empty strings and 'null' strings
-  
+
+**Query:**
+
 ```sql
 UPDATE customer_orders
 SET 	
 	exclusions = CASE WHEN exclusions = '' OR exclusions = 'null' THEN NULL ELSE exclusions END,
     extras = CASE WHEN extras = '' OR extras = 'null' THEN NULL ELSE extras END;
 ```
+**Result:**
 
+|order_id|customer_id|pizza_id|exclusions|extras|order_date|
+|---|---|---|---|---|---|
+|1|101|1|NULL|NULL|2020-01-01 18:05:02.000|
+|2|101|1|NULL|NULL|2020-01-01 19:00:52.000|
+|3|102|1|NULL|NULL|2020-01-02 23:51:23.000|
+|3|102|2|NULL|NULL|2020-01-02 23:51:23.000|
+|4|103|1|4|NULL|2020-01-04 13:23:46.000|
+|4|103|1|4|NULL|2020-01-04 13:23:46.000|
+|4|103|2|4|NULL|2020-01-04 13:23:46.000|
+|5|104|1|NULL|1|2020-01-08 21:00:29.000|
+|6|101|2|NULL|NULL|2020-01-08 21:03:13.000|
+|7|105|2|NULL|1|2020-01-08 21:20:29.000|
+|8|102|1|NULL|NULL|2020-01-09 23:54:33.000|
+|9|103|1|4|1, 5|2020-01-10 11:22:59.000|
+|10|104|1|NULL|NULL|2020-01-11 18:34:49.000|
+|10|104|1|2, 6|1, 4|2020-01-11 18:34:49.000|
+
+We can observe in the above result that all empty strings and 'null' strings are converted to NULL values
