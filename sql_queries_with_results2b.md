@@ -369,6 +369,7 @@ GROUP BY t2.pizza_count;
 |---|---|
 |1|12|
 |2|22|
+
 We do find that time to prepare is roughly 80 % more when 2 pizzas were ordered as compared to when one pizza was ordered
 
 <a name="4RCE"></a>
@@ -407,6 +408,7 @@ FROM runner_orders;
 <a name="6RCE"></a>
 ### What was the average speed for each runner for each delivery and do you notice any trend for these values?
 For this one, we will first calculate the speed by using the formula - distance/time since we are finding for each order, we will use distinct before order_id
+
 **Query:**
 ```sql
 WITH CTE AS
