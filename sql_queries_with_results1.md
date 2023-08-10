@@ -1,5 +1,5 @@
 
-<b>Based on the provided schema, I created database, tables and columns using MYSQL Workbench.</b>
+<b> Based on the provided schema, I created database, tables and columns using MYSQL Workbench. </b>
 
 -- creating database 
 ```sql
