@@ -1,17 +1,17 @@
 
 <b> Based on the provided schema, I created database, tables and columns using MYSQL Workbench. </b>
 
-- creating database
+Creating Database
 
 ```sql
 CREATE DATABASE dannys_diner;
 ```
-- selecting the database to use for extracting data
+Selecting the database to use for extracting data
 
 ```sql
 USE dannys_diner;
 ```
-- creating tables as per schema 
+Creating tables as per schema 
 
 ```sql
 CREATE TABLE sales (
@@ -32,7 +32,7 @@ CREATE TABLE menu (
     product_name VARCHAR(5),
     price INT);
 ```
--- Inserting values in the above created tables    
+Inserting values in the above created tables    
 ```sql
 INSERT INTO sales
 VALUES
@@ -160,6 +160,7 @@ lIMIT 1;
 
 
 5. Which item was the most popular for each customer?
+
 -- Popularity here means the item ordered the most by each customer
    
 **Query:**
