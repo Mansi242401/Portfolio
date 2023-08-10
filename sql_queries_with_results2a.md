@@ -232,7 +232,7 @@ SELECT * FROM customer_orders;
 
 The resultiing table doesn't have any duplicate records
 
-<b>Identify issues in runner_orders <br></b>
+<b>Identify issues in table `runner_orders` <br></b>
 
 ```sql
 SELECT * FROM runner_orders;
@@ -270,9 +270,9 @@ SELECT * FROM runner_orders;
 
 The above query results suggest that all empty stings and 'null' strings are replaced with NULL values
 
-**4.Issue:** There are unwanted strings like 'km' and 'minutes' in distance and duration columns respectively
+**4.Issue:** There are unwanted strings like 'km' and 'minutes' in `distance` and `duration` columns respectively
 
-**Solution:** Remove extra string from distance and duration column
+**Solution:** Remove extra string from `distance` and `duration` column
 
 **Query:**
 ```sql
@@ -313,9 +313,9 @@ SELECT * FROM runner_orders;
 
 From the above result, we can see that all unrequired strings like "kms" and "min" are removed from distance and duration columns
 
-**5. Issue:** The data type of column pickup time, distance and duration is VARCHAR which should be DATETIME, DECIMAL and INT respectively
+**5. Issue:** The data type of column `pickup_time`, `distance` and `duration` is VARCHAR which should be DATETIME, DECIMAL and INT respectively
 
-**Solution:** Change data type of the columns - pickup_time, distance, duration
+**Solution:** Change data type of the columns - `pickup_time`, `distance`, `duration`
 
 **Query:**
 ```sql
