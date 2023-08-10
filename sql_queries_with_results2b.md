@@ -13,6 +13,16 @@ You can click on the specific question to navigate to that question's solution
 - [What was the total volume of pizzas ordered for each hour of the day?](#What-was-the-total-volume-of-pizzas-ordered-for-each-hour-of-the-day?)
 - [What was the volume of orders for each day of the week?](#What-was-the-volume-of-orders-for-each-day-of-the-week?)
 
+#### Runner and Customer Experience
+
+- [How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)](#1RCE)
+- [What was the average time in minutes it took for each runner to arrive at the Pizza Runner HQ to pickup the order?](#2RCE)
+- [Is there any relationship between the number of pizzas and how long the order takes to prepare?](#3RCE)
+- [What was the average distance travelled for each customer?](#4RCE)
+- [What was the difference between the longest and shortest delivery times for all orders?](#5RCE)
+- [What was the average speed for each runner for each delivery and do you notice any trend for these values?](#6RCE)
+- [What is the successful delivery percentage for each runner?](#7RCE)
+
 <a name="How-many-pizzas-were-ordered?"></a>
 ### How many pizzas were ordered?
 **Query:**
@@ -266,6 +276,35 @@ GROUP BY DayOfWeek;
 |Wednesday|5|
 
 We observe that majority orders were made on Wednesdays and then on Saturday and Thursday.
+
+Next, we start the second part of the Case Study
+#### B. Runner and Customer Experience
+
+<a name="1RCE"></a>
+### How many runners signed up for each 1 week period? (i.e. week starts 2021-01-01)
+```sql
+WITH CTE AS 
+(
+    SELECT 
+*, 
+CASE WHEN registration_date BETWEEN '2020-01-01' AND '2020-01-07' THEN 'WEEK 1'
+WHEN registration_date BETWEEN '2020-01-08' AND '2020-01-14' THEN 'WEEK 2'
+WHEN registration_date BETWEEN '2020-01-15' AND '2020-01-23' THEN 'WEEK 3'
+ELSE 'WEEK 4' END AS week_of_the_month
+FROM runners
+)
+SELECT week_of_the_month,
+COUNT(runner_id) as runner_count
+FROM CTE 
+GROUP BY week_of_the_month;
+```
+
+**Result:**
+|week_of_the_month|runner_count|
+|---|---|
+|WEEK 1|2|
+|WEEK 2|1|
+|WEEK 3|1|
 
 
 
