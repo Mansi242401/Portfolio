@@ -1,17 +1,17 @@
 
 <b> Based on the provided schema, I created database, tables and columns using MYSQL Workbench. </b>
 
-creating database
+- creating database
 
 ```sql
 CREATE DATABASE dannys_diner;
 ```
-selecting the database to use for extracting data
+- selecting the database to use for extracting data
 
 ```sql
 USE dannys_diner;
 ```
-creating tables as per schema 
+- creating tables as per schema 
 
 ```sql
 CREATE TABLE sales (
