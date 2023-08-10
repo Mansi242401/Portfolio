@@ -1,13 +1,13 @@
--- Case Study #2 - Pizza Runner
-For this case study I have used MS SQL Server to execute the queries 
+### Case Study #2 - Pizza Runner
 
--- Create a database named pizza_runner
+#### For this case study I have used MS SQL Server to execute the queries 
+
+Create a database named pizza_runner
 ```sql
 CREATE DATABASE pizza_runner;
 ```
 
--- Creating tables - The tables are created as per the schema and instructions in the project with some flaws in the datatype of certain tables, 
--- because in real world, we may encounter these issues
+Creating tables - The tables are created as per the schema and instructions in the project with some flaws in the datatype of certain tables, because in real world, we may encounter these issues
 ```sql
 CREATE TABLE runner_orders (
 	order_id INT,
