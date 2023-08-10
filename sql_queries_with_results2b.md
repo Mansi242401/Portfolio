@@ -56,6 +56,7 @@ GROUP BY runner_id;
 |2|3|
 |3|1|
 
+<a name="How-many-of-each-type-of-pizza-was-delivered?"></a>
 ### How many of each type of pizza was delivered?
 
 For this one, we need to first count all pizzas orders and then group them by the type
