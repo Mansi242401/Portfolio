@@ -335,6 +335,7 @@ ALTER COLUMN duration INT;
 exec sp_columns runner_orders;
 ```
 ***Result:***
+
 |TABLE_QUALIFIER|TABLE_OWNER|TABLE_NAME|COLUMN_NAME|DATA_TYPE|TYPE_NAME|PRECISION|LENGTH|SCALE|RADIX|NULLABLE|REMARKS|COLUMN_DEF|SQL_DATA_TYPE|SQL_DATETIME_SUB|CHAR_OCTET_LENGTH|ORDINAL_POSITION|IS_NULLABLE|SS_DATA_TYPE|
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 |pizza_runner|dbo|runner_orders|order_id|4|int|10|4|0|10|1|NULL|NULL|4|NULL|NULL|1|YES|38|
