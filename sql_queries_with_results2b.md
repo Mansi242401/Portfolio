@@ -118,7 +118,61 @@ PIVOT (
 |105|NULL|1|
 
 
+<a name="What-was-the-maximum-number-of-pizzas-delivered-in-a-single-order?"></a>
+### What was the maximum number of pizzas delivered in a single order?
+First, we need to filter the rows where order was not cancelled as we are looking at only delivered pizzas.
+Then, we count the pizzas and group them by order_id as we are looking for each order.
 
+**Query:**
+```sql
+SELECT
+c.order_id,
+count(pizza_id) AS pizza_count
+FROM 
+customer_orders c
+JOIN runner_orders r 
+ON c.order_id = r.order_id
+WHERE cancellation IS NULL
+GROUP BY c.order_id
+ORDER BY pizza_count DESC;
+```
+**Result:**
+|order_id|pizza_count|
+|---|---|
+|3|2|
+|4|2|
+|10|2|
+|1|1|
+|2|1|
+|5|1|
+|7|1|
+|8|1|
+
+
+<a name="For-each-customer,-how-many-delivered-pizzas-had-at-least-1-change-and-how-many-had-no-changes?"></a>
+### For each customer, how many delivered pizzas had at least 1 change and how many had no changes?
+Here, the change could be in exclusions and extras, hence, we need to find the count of pizzas that where exclusions or/and extras are NOT NULL for counting changed pizzas, and NULL for these columns when counting not changed pizzas and then group them by customer_id as we need to find for each customer
+
+**Query:**
+```sql
+SELECT customer_id,
+	COUNT(CASE WHEN exclusions <> '' OR extras <> '' THEN 1 END) AS changed,
+   COUNT(CASE WHEN exclusions IS NULL AND extras IS NULL THEN 1 END) AS unchanged 
+FROM customer_orders c 
+JOIN runner_orders r 
+ON c.order_id = r.order_id
+WHERE cancellation IS NULL
+GROUP BY customer_id
+ORDER BY customer_id;
+```
+**Result:**
+|customer_id|changed|unchanged|
+|---|---|---|
+|101|0|2|
+|102|0|3|
+|103|2|0|
+|104|2|1|
+|105|1|0|
 
 
 
