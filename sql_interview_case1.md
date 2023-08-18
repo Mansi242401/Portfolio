@@ -89,3 +89,4 @@ LEFT JOIN Sales_Fact s
 ON a.account_id = s.account_id AND d.date_id = s.date_id
 WHERE s.revenue IS NULL
 ```
+Note  - In actual interview you may or may not get to see the real data or create and populate the data. This is only for the purpose of practicing and educating.
