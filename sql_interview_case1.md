@@ -75,7 +75,6 @@ ORDER BY revenue DESC;
 
 ```sql
 -- First we need to combine the date from all tables as we need a list of all accounts which we get from accounts table, then we need the date table as we need to calculate --- for every day and finally sales_fact table as we need to filter out those accounts which have spent
- 
 SELECT 
 a.account_id,    
 d.date_id,
