@@ -43,11 +43,13 @@ VALUES
     (3),
     (4),
     (5)
+;
 INSERT INTO [Date]
 VALUES
     (1, '2023-01-01'),
     (2, '2023-01-02'),
     (3, '2023-01-03')
+;
 INSERT INTO Sales_Fact
 VALUES  
     (1, 1, 100),
@@ -57,20 +59,23 @@ VALUES
 ```
 
 
--- Interview Questions
+#### Interview Questions
 
--- 1. Given a table with Account and Revenue for a month, find the max and second max revenue from that table without using MAX
+1. Given a table with Account and Revenue for a month, find the max and second max revenue from that table without using MAX
 
+```sql
 SELECT TOP 2
 account_id,
 revenue
 FROM Sales_Fact
 ORDER BY revenue DESC;
+```
 
--- 2. Write an SQL that generates a list of all accounts on every day in the last one month that have not been spent
+2. Write an SQL that generates a list of all accounts on every day in the last one month that have not been spent
 
--- First we need to combine the date from all tables as we need a list of all accounts which we get from accounts table, then we need the date table as we need to calculate for every day and finally sales_fact table as we need to filter out those accounts which have spent
-
+```sql
+-- First we need to combine the date from all tables as we need a list of all accounts which we get from accounts table, then we need the date table as we need to calculate --- for every day and finally sales_fact table as we need to filter out those accounts which have spent
+ 
 SELECT 
 a.account_id,    
 d.date_id,
@@ -83,3 +88,4 @@ ON 1 = 1 -- run till this point, to see how full join works as a cross join in t
 LEFT JOIN Sales_Fact s
 ON a.account_id = s.account_id AND d.date_id = s.date_id
 WHERE s.revenue IS NULL
+```
