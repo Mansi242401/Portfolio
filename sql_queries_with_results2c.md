@@ -12,7 +12,6 @@ In the following section, we will answer the questions related to ingredients an
 first, we will explode the comma separated values in toppings column into separate rows
 
 ```sql
--- creating a temproray table with exploded comma separated values 
 WITH ingredients as
 (
 select 
@@ -20,16 +19,22 @@ pizza_id,
 [value] AS split_toppings 
 from pizza_recipes 
 cross apply STRING_SPLIT(toppings,  ',')
-)
--- Joining temporary table with pizza_names table to get the pizza_names and then with pizza_toppings table to get the names of the toppings 
-SELECT
-pn.pizza_name,
-pt.topping_name
+),
+ingr AS 
+-- Joining temporary table with pizza_names table to get the pizza_names and then with pizza_toppings table to get the names of the toppings
+(SELECT
+pn.pizza_name as p_name,
+CAST(pt.topping_name AS nvarchar(32)) as t_name
 FROM pizza_names pn
 JOIN ingredients i
 ON pn.pizza_id =  i.pizza_id
 JOIN pizza_toppings pt
-ON i.split_toppings = pt.topping_id
+ON i.split_toppings = pt.topping_id)
+SELECT 
+p_name,
+STRING_AGG(t_name, ',') as Standard_toppings
+FROM ingr
+GROUP BY p_name;
 ```
 
 2. What was the most commonly added extra?
