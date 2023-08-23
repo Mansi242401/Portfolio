@@ -5,6 +5,9 @@ Cleaning table `pizza_recipes`
 ALTER TABLE pizza_recipes
 ALTER COLUMN toppings VARCHAR(64);
 ```
+C. Ingredient Optimisation
+In the following section, we will answer the questions related to ingredients and how can those be optimised to improve sales
+
 1. What are the standard ingredients for each pizza?
 first, we will explode the comma separated values in toppings column into separate rows
 
@@ -30,7 +33,58 @@ ON i.split_toppings = pt.topping_id
 ```
 
 2. What was the most commonly added extra?
+```sql
+    WITH CTE AS (
+    select 
+    pizza_id,
+    CAST([value] AS Int) AS extras_split 
+    from customer_orders
+    cross apply STRING_SPLIT(extras,  ',')
+    ),
+    pop_extras AS
+    (
+    SELECT TOP 1 
+    extras_split, 
+    count(extras_split) as popular_extras_count
+    FROM CTE 
+    GROUP BY extras_split
+    ORDER BY popular_extras_count DESC
+    ) 
+    SELECT 
+    pt.topping_name,
+    p.popular_extras_count
+    FROM pop_extras p 
+    JOIN pizza_toppings pt 
+    ON p.extras_split = pt.topping_id
+```
 
+3. What was the most common exclusion?
+   ```sql
+     WITH CTE AS (
+    select 
+    pizza_id,
+    CAST([value] AS Int) AS excl_split 
+    from customer_orders
+    cross apply STRING_SPLIT(exclusions,  ',')
+    ),
+    pop_excl AS
+    (
+    SELECT TOP 1 
+    excl_split, 
+    count(excl_split) as popular_excl_count
+    FROM CTE 
+    GROUP BY excl_split
+    ORDER BY popular_excl_count DESC
+    ) 
+    SELECT 
+    pt.topping_name,
+    p.popular_excl_count
+    FROM pop_excl p 
+    JOIN pizza_toppings pt 
+    ON p.excl_split = pt.topping_id
+   ```
 
+4. 
+   
 
 
