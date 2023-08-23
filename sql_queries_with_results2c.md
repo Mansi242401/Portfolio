@@ -21,7 +21,7 @@ from pizza_recipes
 cross apply STRING_SPLIT(toppings,  ',')
 ),
 ingr AS 
--- Joining temporary table with pizza_names table to get the pizza_names and then with pizza_toppings table to get the names of the toppings
+-- Joining temporary table with pizza_names table to get the pizza_names and then with pizza_toppings table to get the names of the toppings and creating another temporary table
 (SELECT
 pn.pizza_name as p_name,
 CAST(pt.topping_name AS nvarchar(32)) as t_name
@@ -30,6 +30,7 @@ JOIN ingredients i
 ON pn.pizza_id =  i.pizza_id
 JOIN pizza_toppings pt
 ON i.split_toppings = pt.topping_id)
+-- finally selecting from the second temp table to extract and aggregate the ingredients into comma separated string 
 SELECT 
 p_name,
 STRING_AGG(t_name, ',') as Standard_toppings
