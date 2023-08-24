@@ -35,7 +35,7 @@ ON i.split_toppings = pt.topping_id)
 -- finally selecting from the second temp table to extract toppings names and aggregate the ingredients into comma separated string 
 SELECT 
 p_name,
-STRING_AGG(t_name, ',') as Standard_toppings
+STRING_AGG(t_name, ', ') as Standard_toppings
 FROM ingr
 GROUP BY p_name;
 ```
@@ -43,8 +43,8 @@ GROUP BY p_name;
 
 |p_name|Standard_toppings|
 |---|---|
-|Meat Lovers|Bacon,BBQ Sauce,Beef,Cheese,Chicken,Mushrooms,Pepperoni,Salami|
-|Vegetarian|Cheese,Mushrooms,Onions,Peppers,Tomatoes,Tomato Sauce|
+|Meat Lovers|Bacon, BBQ Sauce, Beef, Cheese, Chicken, Mushrooms, Pepperoni, Salami|
+|Vegetarian|Cheese, Mushrooms, Onions, Peppers, Tomatoes, Tomato Sauce|
 
 2. What was the most commonly added extra?
 
@@ -74,6 +74,13 @@ FROM pop_extras p
 JOIN pizza_toppings pt 
 ON p.extras_split = pt.topping_id
 ```
+**Result:**
+
+|topping_name|popular_extras_count|
+|---|---|
+|Bacon|4|
+
+**Query:**
 
 3. What was the most common exclusion?
 
@@ -101,12 +108,20 @@ FROM pop_excl p
 JOIN pizza_toppings pt 
 ON p.excl_split = pt.topping_id
 ```
+**Result:**
+
+|topping_name|popular_excl_count|
+|---|---|
+|Cheese|3|
+
 
 4. Generate an order item for each record in the customers_orders table in the format of one of the following:
 - Meat Lovers
 - Meat Lovers - Exclude Beef
 - Meat Lovers - Extra Bacon
 - Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers
+
+**Query:**
 
 ```sql
 -- Add a new column named - 'record_id' to assign a unique value to each row, this works as a primary key
@@ -162,7 +177,6 @@ EE_CTE AS
 )
 SELECT 
 c.record_id, 
--- c.pizza_id, 
 CONCAT_WS(' - ', p.pizza_name, STRING_AGG(cte.toppings, ' - ')) as pizza_and_toppings
 FROM customer_orders c 
 JOIN pizza_names p ON c.pizza_id = p.pizza_id
@@ -171,6 +185,22 @@ GROUP BY
 c.record_id,
 p.pizza_name
 ```
-   
+**Result:**
+
+|record_id|pizza_and_toppings|
+|---|---|
+|1|Meat Lovers|
+|2|Meat Lovers|
+|3|Meat Lovers|
+|5|Meat Lovers - Exclude Cheese|
+|7|Meat Lovers - Extra Bacon|
+|10|Meat Lovers|
+|11|Meat Lovers - Exclude Cheese - Extra Bacon,Chicken|
+|12|Meat Lovers|
+|13|Meat Lovers - Exclude BBQ Sauce,Mushrooms - Extra Bacon,Cheese|
+|4|Vegetarian|
+|6|Vegetarian - Exclude Cheese|
+|8|Vegetarian|
+|9|Vegetarian - Extra Bacon|
 
 
