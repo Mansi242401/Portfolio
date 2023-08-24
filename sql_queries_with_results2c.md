@@ -9,6 +9,7 @@ C. Ingredient Optimisation
 In the following section, we will answer the questions related to ingredients and how can those be optimised to improve sales
 
 1. What are the standard ingredients for each pizza?
+
 first, we will explode the comma separated values in toppings column into separate rows
 
 **Query:**
