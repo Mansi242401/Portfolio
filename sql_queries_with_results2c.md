@@ -127,7 +127,7 @@ ON p.excl_split = pt.topping_id
 -- Add a new column named - 'record_id' to assign a unique value to each row, this works as a primary key
 ALTER TABLE customer_orders
 ADD record_id INT IDENTITY(1,1);
--- splitting values in 'extras' column into rows.
+-- splitting values in 'extras' column into rows and storing it in a temp table named extra_CTE
 WITH extra_CTE AS 
 (
     select 
@@ -137,18 +137,20 @@ WITH extra_CTE AS
     from customer_orders c
     cross apply STRING_SPLIT(c.extras,  ',') AS es 
 ), 
--- 
+-- using the split values in 'extras' column to map the names of toppings from 'pizza_toppings' table and aggregating it back into a column called 'toppings'
+-- This can be understood as replacing the numbers/toppings_ids in 'extras' column with 'topping_names' while keeping the same number of rows as in the cleaned 'customer_orders' table
+
 extra_topp AS
 (
 SELECT 
     record_id
 ,'Extra '+ STRING_AGG(CAST(pt.topping_name AS VARCHAR(MAX)), ',') AS toppings
--- ,STRING_AGG(CAST(pt.topping_name AS VARCHAR(MAX)), ',') AS exclusion_top
 FROM extra_CTE c 
 JOIN pizza_toppings pt 
 ON pt.topping_id = c.extras_split
 GROUP BY record_id
 ),
+-- repeating the above logic for 'exclusions'
 excl_CTE AS
 (
     select 
@@ -169,12 +171,16 @@ ON pt.topping_id = c.excl_split
 GROUP BY record_id
 )
 ,
+-- The above two logics would return two tables one with rows where 'extras' are not null and another with rows where 'exclusions' are not null. But, since we need both we use 'UNION' to combine the data horizontally
+
 EE_CTE AS
 (
     SELECT * FROM extra_topp
     UNION
     SELECT * FROM excl_topp
 )
+
+--Finally, we write the logic to ccombine 'pizza_name' with 'extras' and 'exclusions'
 SELECT 
 c.record_id, 
 CONCAT_WS(' - ', p.pizza_name, STRING_AGG(cte.toppings, ' - ')) as pizza_and_toppings
