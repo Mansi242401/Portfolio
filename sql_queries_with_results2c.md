@@ -98,7 +98,7 @@ ON p.excl_split = pt.topping_id
 - Meat Lovers - Extra Bacon
 - Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers
 
-   ```sql
+```sql
 -- Add a new column named - 'record_id' to assign a unique value to each row, this works as a primary key
 
 ALTER TABLE customer_orders
