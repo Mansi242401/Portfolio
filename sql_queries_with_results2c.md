@@ -11,6 +11,8 @@ In the following section, we will answer the questions related to ingredients an
 1. What are the standard ingredients for each pizza?
 first, we will explode the comma separated values in toppings column into separate rows
 
+**Query:**
+
 ```sql
 WITH ingredients as
 (
@@ -30,13 +32,19 @@ JOIN ingredients i
 ON pn.pizza_id =  i.pizza_id
 JOIN pizza_toppings pt
 ON i.split_toppings = pt.topping_id)
--- finally selecting from the second temp table to extract and aggregate the ingredients into comma separated string 
+-- finally selecting from the second temp table to extract toppings names and aggregate the ingredients into comma separated string 
 SELECT 
 p_name,
 STRING_AGG(t_name, ',') as Standard_toppings
 FROM ingr
 GROUP BY p_name;
 ```
+**Result:**
+
+|p_name|Standard_toppings|
+|---|---|
+|Meat Lovers|Bacon,BBQ Sauce,Beef,Cheese,Chicken,Mushrooms,Pepperoni,Salami|
+|Vegetarian|Cheese,Mushrooms,Onions,Peppers,Tomatoes,Tomato Sauce|
 
 2. What was the most commonly added extra?
 
