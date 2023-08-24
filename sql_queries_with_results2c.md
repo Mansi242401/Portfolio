@@ -184,6 +184,7 @@ LEFT JOIN EE_CTE cte ON c.record_id = cte.record_id
 GROUP BY 
 c.record_id,
 p.pizza_name
+ORDER BY c.record_id
 ```
 **Result:**
 
@@ -192,15 +193,16 @@ p.pizza_name
 |1|Meat Lovers|
 |2|Meat Lovers|
 |3|Meat Lovers|
+|4|Vegetarian|
 |5|Meat Lovers - Exclude Cheese|
+|6|Vegetarian - Exclude Cheese|
 |7|Meat Lovers - Extra Bacon|
+|8|Vegetarian|
+|9|Vegetarian - Extra Bacon|
 |10|Meat Lovers|
 |11|Meat Lovers - Exclude Cheese - Extra Bacon,Chicken|
 |12|Meat Lovers|
 |13|Meat Lovers - Exclude BBQ Sauce,Mushrooms - Extra Bacon,Cheese|
-|4|Vegetarian|
-|6|Vegetarian - Exclude Cheese|
-|8|Vegetarian|
-|9|Vegetarian - Extra Bacon|
+
 
 
