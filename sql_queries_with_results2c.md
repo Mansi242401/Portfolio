@@ -48,6 +48,8 @@ GROUP BY p_name;
 
 2. What was the most commonly added extra?
 
+**Query:** 
+
 ```sql
 WITH CTE AS (
 select 
