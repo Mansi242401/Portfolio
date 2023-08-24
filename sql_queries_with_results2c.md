@@ -180,7 +180,7 @@ EE_CTE AS
     SELECT * FROM excl_topp
 )
 
---Finally, we write the logic to ccombine 'pizza_name' with 'extras' and 'exclusions'
+--Finally, we write the logic to combine 'pizza_name' with 'extras' and 'exclusions'
 SELECT 
 c.record_id, 
 CONCAT_WS(' - ', p.pizza_name, STRING_AGG(cte.toppings, ' - ')) as pizza_and_toppings
