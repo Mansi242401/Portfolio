@@ -100,12 +100,9 @@ ON p.excl_split = pt.topping_id
 
 ```sql
 -- Add a new column named - 'record_id' to assign a unique value to each row, this works as a primary key
-
 ALTER TABLE customer_orders
 ADD record_id INT IDENTITY(1,1);
-
 -- splitting values in 'extras' column into rows.
-
 WITH extra_CTE AS 
 (
     select 
@@ -115,7 +112,6 @@ WITH extra_CTE AS
     from customer_orders c
     cross apply STRING_SPLIT(c.extras,  ',') AS es 
 ), 
-
 -- 
 extra_topp AS
 (
@@ -154,7 +150,6 @@ EE_CTE AS
     UNION
     SELECT * FROM excl_topp
 )
-
 SELECT 
 c.record_id, 
 -- c.pizza_id, 
