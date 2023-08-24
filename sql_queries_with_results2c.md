@@ -80,9 +80,9 @@ ON p.extras_split = pt.topping_id
 |---|---|
 |Bacon|4|
 
-**Query:**
-
 3. What was the most common exclusion?
+
+**Query:**
 
 ```sql
 WITH CTE AS (
