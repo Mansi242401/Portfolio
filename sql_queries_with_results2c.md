@@ -89,8 +89,80 @@ GROUP BY p_name;
     JOIN pizza_toppings pt 
     ON p.excl_split = pt.topping_id
    ```
+4. Generate an order item for each record in the customers_orders table in the format of one of the following:
+- Meat Lovers
+- Meat Lovers - Exclude Beef
+- Meat Lovers - Extra Bacon
+- Meat Lovers - Exclude Cheese, Bacon - Extra Mushroom, Peppers
 
-4. 
+   ```sql
+-- Add a new column named - 'record_id' to assign a unique value to each row, this works as a primary key
+
+ALTER TABLE customer_orders
+ADD record_id INT IDENTITY(1,1);
+
+-- splitting values in 'extras' column into rows.
+
+WITH extra_CTE AS 
+(
+    select 
+    c.record_id as record_id,
+    c.pizza_id,
+    CAST(es.value AS Int) AS extras_split
+    from customer_orders c
+    cross apply STRING_SPLIT(c.extras,  ',') AS es 
+), 
+
+-- 
+extra_topp AS
+(
+SELECT 
+    record_id
+,'Extra '+ STRING_AGG(CAST(pt.topping_name AS VARCHAR(MAX)), ',') AS toppings
+-- ,STRING_AGG(CAST(pt.topping_name AS VARCHAR(MAX)), ',') AS exclusion_top
+FROM extra_CTE c 
+JOIN pizza_toppings pt 
+ON pt.topping_id = c.extras_split
+GROUP BY record_id
+),
+excl_CTE AS
+(
+    select 
+    c.record_id as record_id,
+    c.pizza_id,
+    CAST(es.value AS Int) AS excl_split
+    from customer_orders c
+    cross apply STRING_SPLIT(c.exclusions,  ',') AS es 
+),
+excl_topp AS
+(
+SELECT 
+    record_id
+,'Exclude ' + STRING_AGG(CAST(pt.topping_name AS VARCHAR(MAX)), ',') AS toppings
+FROM excl_CTE c 
+JOIN pizza_toppings pt 
+ON pt.topping_id = c.excl_split
+GROUP BY record_id
+)
+,
+EE_CTE AS
+(
+    SELECT * FROM extra_topp
+    UNION
+    SELECT * FROM excl_topp
+)
+
+SELECT 
+c.record_id, 
+-- c.pizza_id, 
+CONCAT_WS(' - ', p.pizza_name, STRING_AGG(cte.toppings, ' - ')) as pizza_and_toppings
+FROM customer_orders c 
+JOIN pizza_names p ON c.pizza_id = p.pizza_id
+LEFT JOIN EE_CTE cte ON c.record_id = cte.record_id
+GROUP BY 
+c.record_id,
+p.pizza_name
+```
    
 
 
