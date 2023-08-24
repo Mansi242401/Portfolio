@@ -66,8 +66,9 @@ ON p.extras_split = pt.topping_id
 ```
 
 3. What was the most common exclusion?
-   ```sql
- WITH CTE AS (
+
+```sql
+WITH CTE AS (
 select 
 pizza_id,
 CAST([value] AS Int) AS excl_split 
@@ -89,7 +90,8 @@ p.popular_excl_count
 FROM pop_excl p 
 JOIN pizza_toppings pt 
 ON p.excl_split = pt.topping_id
-   ```
+```
+
 4. Generate an order item for each record in the customers_orders table in the format of one of the following:
 - Meat Lovers
 - Meat Lovers - Exclude Beef
