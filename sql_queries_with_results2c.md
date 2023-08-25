@@ -5,7 +5,7 @@ Cleaning table `pizza_recipes`
 ALTER TABLE pizza_recipes
 ALTER COLUMN toppings VARCHAR(64);
 ```
-C. Ingredient Optimisation
+C. Ingredient Optimisation<br>
 In the following section, we will answer the questions related to ingredients and how can those be optimised to improve sales
 
 1. What are the standard ingredients for each pizza?<br>
