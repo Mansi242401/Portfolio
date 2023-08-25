@@ -14,7 +14,7 @@ If there is no spend there wont be a record in the fact table
 ### Solution :
 For this case study I have used MS SQL Server 1.45.0 to execute the queries
 
-First, we create a database names 'TestDB'
+First, we create a database named 'TestDB'
 
 ```sql
 CREATE DATABASE TestDB;
