@@ -35,7 +35,8 @@ CREATE TABLE Terrestrial_Table (
     planet CHAR(32),
     category CHAR(64),
     temp_in_C INT,
-    Size_in_millions_km INT
+    Size_in_millions_km INT,
+    Date DATE
  )
 
  INSERT INTO Initial_Table 
@@ -77,10 +78,10 @@ CREATE TABLE Terrestrial_Table (
 
 INSERT INTO Outer_planet_Table
 VALUES
-('Jupiter', 'Giant Planets', -50, 817),
-('Saturn', 'Giant Planets', -134, 1350),
-('Uranus', 'Ice Planets', -168, 4550),
-('Neptune', 'Ice Planets', -360, 5910)
+('Jupiter', 'Giant Planets', -50, 817, '2021-03-01'),
+('Saturn', 'Giant Planets', -134, 1350, '2021-03-01'),
+('Uranus', 'Ice Planets', -168, 4550, '2021-03-01'),
+('Neptune', 'Ice Planets', -360, 5910, '2021-03-01')
 ```
 
 **Question 2** : 
