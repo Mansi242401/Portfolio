@@ -17,6 +17,9 @@ A portfolio showcasing case studies in SQL and Python
 
 **3. SQL Interview Case Study**
 * This case study was asked in an interview by one of the most popular subscription-based streaming service company - Here's the complete [case study](https://github.com/Mansi242401/Portfolio/blob/main/sql_interview_case1.md)
+
+**4. SQL Interview Case Study**
+* This case study has three questions to test the applicant's ability to apply union - Here is the link to complete problem and solution - 
   
 ## Python Projects
 
