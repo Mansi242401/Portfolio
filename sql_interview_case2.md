@@ -85,6 +85,7 @@ VALUES
 ```
 
 **Question 2** : Write a select statement to produce the above desired result.
+**Solution:**
 ```sql
 SELECT 
 planet,
@@ -139,6 +140,7 @@ FROM Outer_planet_Table
 |Venus                           |Terrestrial Planet                                              |466|2021-03-01|
 
 **Question3:** Find the planets that have greater than 0 degree Celcius temperature
+**Solution:**
 ```sql
 WITH CTE AS 
 (
@@ -195,6 +197,64 @@ WHERE temp_in_C > 0
 |Venus                           |2021-03-02|299|
 |Venus                           |2021-03-01|465|
 |Venus                           |2021-03-01|466|
+
+**Question4:** Find the planets that start with a 'M' or a 'N'
+**Solution:**
+```sql
+WITH CTE AS 
+(
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Initial_Table
+UNION 
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM History_Table
+UNION
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Terrestrial_Table
+UNION
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Outer_planet_Table
+)
+SELECT 
+DISTINCT planet
+FROM CTE 
+WHERE planet LIKE 'M%' 
+OR planet LIKE 'N%'
+```
+**Result:**
+|planet|Date|temp_in_C|
+|---|---|---|
+|Earth                           |2021-02-28|20|
+|Earth                           |2021-03-02|33|
+|Earth                           |2021-03-01|35|
+|Mars                            |2021-02-27|11|
+|Mars                            |2021-03-02|13|
+|Mars                            |2021-02-28|15|
+|Mars                            |2021-03-01|15|
+|Mercury                         |2021-02-28|319|
+|Mercury                         |2021-03-01|320|
+|Mercury                         |2021-03-01|430|
+|Venus                           |2021-02-28|289|
+|Venus                           |2021-03-02|299|
+|Venus                           |2021-03-01|465|
+|Venus                           |2021-03-01|466|
+
 
 
 
