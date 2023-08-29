@@ -84,5 +84,117 @@ VALUES
 ('Neptune', 'Ice Planets', -360, 5910, '2021-03-01')
 ```
 
-**Question 2** : 
+**Question 2** : Write a select statement to produce the above desired result.
+```sql
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Initial_Table
+UNION 
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM History_Table
+UNION
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Terrestrial_Table
+UNION
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Outer_planet_Table
+```
+**Result:**
+|planet|category|temp_in_C|DATE|
+|---|---|---|---|
+|Earth                           |Terrestrial Planet                                              |20|2021-02-28|
+|Earth                           |Terrestrial Planet                                              |33|2021-03-02|
+|Earth                           |Terrestrial Planet                                              |35|2021-03-01|
+|Jupiter                         |Giant Planets                                                   |-60|2021-02-28|
+|Jupiter                         |Giant Planets                                                   |-50|2021-03-01|
+|Jupiter                         |Giant Planets                                                   |-40|2021-02-27|
+|Mars                            |Terrestrial Planet                                              |11|2021-02-27|
+|Mars                            |Terrestrial Planet                                              |13|2021-03-02|
+|Mars                            |Terrestrial Planet                                              |15|2021-02-28|
+|Mars                            |Terrestrial Planet                                              |15|2021-03-01|
+|Mercury                         |Terrestrial Planet                                              |319|2021-02-28|
+|Mercury                         |Terrestrial Planet                                              |320|2021-03-01|
+|Mercury                         |Terrestrial Planet                                              |430|2021-03-01|
+|Neptune                         |Ice Planets                                                     |-360|2021-03-01|
+|Saturn                          |Giant Planets                                                   |-134|2021-03-01|
+|Uranus                          |Ice Planets                                                     |-168|2021-03-01|
+|Venus                           |Terrestrial Planet                                              |289|2021-02-28|
+|Venus                           |Terrestrial Planet                                              |299|2021-03-02|
+|Venus                           |Terrestrial Planet                                              |465|2021-03-01|
+|Venus                           |Terrestrial Planet                                              |466|2021-03-01|
+
+**Question3:** Find the planets that have greater than 0 degree Celcius temperature
+```sql
+WITH CTE AS 
+(
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Initial_Table
+UNION 
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM History_Table
+UNION
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Terrestrial_Table
+UNION
+SELECT 
+planet,
+category,
+temp_in_C,
+DATE 
+FROM Outer_planet_Table
+)
+SELECT 
+planet, 
+Date, 
+temp_in_C 
+FROM CTE 
+WHERE temp_in_C > 0
+```
+
+**Result:**
+|planet|Date|temp_in_C|
+|---|---|---|
+|Earth                           |2021-02-28|20|
+|Earth                           |2021-03-02|33|
+|Earth                           |2021-03-01|35|
+|Mars                            |2021-02-27|11|
+|Mars                            |2021-03-02|13|
+|Mars                            |2021-02-28|15|
+|Mars                            |2021-03-01|15|
+|Mercury                         |2021-02-28|319|
+|Mercury                         |2021-03-01|320|
+|Mercury                         |2021-03-01|430|
+|Venus                           |2021-02-28|289|
+|Venus                           |2021-03-02|299|
+|Venus                           |2021-03-01|465|
+|Venus                           |2021-03-01|466|
+
+
 
