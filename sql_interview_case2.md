@@ -84,7 +84,7 @@ VALUES
 ('Neptune', 'Ice Planets', -360, 5910, '2021-03-01')
 ```
 
-**Question 2** : Write a select statement to produce the above desired result.<br>
+**Question 2** : Write a select statement to produce the above desired result. <br>
 **Solution:**
 ```sql
 SELECT 
@@ -139,7 +139,7 @@ FROM Outer_planet_Table
 |Venus                           |Terrestrial Planet                                              |465|2021-03-01|
 |Venus                           |Terrestrial Planet                                              |466|2021-03-01|
 
-**Question3:** Find the planets that have greater than 0 degree Celcius temperature<br>
+**Question3:** Find the planets that have greater than 0 degree Celcius temperature <br>
 **Solution:**
 ```sql
 WITH CTE AS 
