@@ -3,7 +3,7 @@
 
 You have four tables - each table has information about the planets in our solar system. The tables have a similar structure but they come from different sources. The data is collected daily from satellites and hence different table may have same rows/duplicate records.Your task is to combine the data set into a single table with unique rows in that table.You can use UNION or UNION ALL.
 
-**Question 1** : Which(UNION or UNIION ALL) you will select and why?
+**Question 1** : Which(UNION or UNIION ALL) you will select and why?<br>
 **Ans** : Both Union and Union All are used to combine data with similar structure. However, UNION combines data without duplicating rows and UNION ALL combines all the data with duplicate rows included.In this case, requirement is to get the unique rows, hence we will pick UNION
 
 ### SQL Script to create Sample Data 
@@ -84,7 +84,7 @@ VALUES
 ('Neptune', 'Ice Planets', -360, 5910, '2021-03-01')
 ```
 
-**Question 2** : Write a select statement to produce the above desired result.
+**Question 2** : Write a select statement to produce the above desired result.<br>
 **Solution:**
 ```sql
 SELECT 
@@ -139,7 +139,7 @@ FROM Outer_planet_Table
 |Venus                           |Terrestrial Planet                                              |465|2021-03-01|
 |Venus                           |Terrestrial Planet                                              |466|2021-03-01|
 
-**Question3:** Find the planets that have greater than 0 degree Celcius temperature
+**Question3:** Find the planets that have greater than 0 degree Celcius temperature<br>
 **Solution:**
 ```sql
 WITH CTE AS 
@@ -198,7 +198,7 @@ WHERE temp_in_C > 0
 |Venus                           |2021-03-01|465|
 |Venus                           |2021-03-01|466|
 
-**Question4:** Find the planets that start with a 'M' or a 'N'
+**Question4:** Find the planets that start with a 'M' or a 'N' <br>
 **Solution:**
 ```sql
 WITH CTE AS 
@@ -254,7 +254,4 @@ OR planet LIKE 'N%'
 |Venus                           |2021-03-02|299|
 |Venus                           |2021-03-01|465|
 |Venus                           |2021-03-01|466|
-
-
-
 
