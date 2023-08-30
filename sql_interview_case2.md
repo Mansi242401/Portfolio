@@ -238,5 +238,9 @@ WHERE planet LIKE 'M%'
 OR planet LIKE 'N%'
 ```
 **Result:**
-
+|planet|
+|---|
+|Mars                            |
+|Mercury                         |
+|Neptune                         |
 
