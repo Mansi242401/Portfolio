@@ -36,8 +36,8 @@ You are given two tables that look like this -
 SELECT 
 DISTINCT r.Hotel_ID,
 r.Room_no, 
-COALESCE (CAST(r.rent AS VARCHAR), 'Not available') AS rent
--- CASE WHEN r.rent IS NULL THEN 'Not available' ELSE CAST(r.rent AS VARCHAR) END AS rent 
+COALESCE (CAST(r.rent AS VARCHAR), 'Not available') AS rent     -- We are using CAST to change the data type of the column from 'INT' to 'VARCHAR' to make it compatible with the data type of 'Not available' 
+-- CASE WHEN r.rent IS NULL THEN 'Not available' ELSE CAST(r.rent AS VARCHAR) END AS rent  -- same result can also be achieved using CASE statement
 FROM Rooms r, Hotel h
 WHERE h.[location] = 'City_B' 
 AND h.Hotel_ID = r.Hotel_ID
