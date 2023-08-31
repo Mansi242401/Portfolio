@@ -24,6 +24,7 @@ A portfolio showcasing case studies in SQL and Python
 * b) It has questions to test and show how union is used with aggregate functions - Here is the [link](https://github.com/Mansi242401/Portfolio/blob/main/sql_interview_case_3.md)
 
 **5. SQL COALESCE CASE STUDY**
+
 This use case showcases one of the ways of dealing with Null values - [code](https://github.com/Mansi242401/Portfolio/blob/main/sql_intervieiw_case4.md)
 
 
