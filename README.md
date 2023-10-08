@@ -15,6 +15,9 @@ A portfolio showcasing case studies in SQL and Python
   3. Answering questions with Queries for next two parts - Code is [here](https://github.com/Mansi242401/Portfolio/blob/main/sql_queries_with_results2c.md)
 * This is part of the 8 week SQL Challenge, by Danny Ma. You can find his challenge here: https://8weeksqlchallenge.com/case-study-2/
 
+
+**SQL INTERVIEW QUESTIONS**
+
 **3. SQL Interview Case Study**
 * This case study was asked in an interview by one of the most popular subscription-based streaming service company - Here's the complete [case study](https://github.com/Mansi242401/Portfolio/blob/main/sql_interview_case1.md)
 
