@@ -43,4 +43,34 @@ This use case showcases one of the ways of dealing with Null values - [code](htt
 
 In this project I have used financial data set which includes Balance Sheet and P&L Components of 29 companies. The data is in Json-like format in a text file and is required to be converted into tabular data in a google spreadhseet. Here is a [link](https://github.com/Mansi242401/text_df_googlesheet/tree/main) to the complete project with step-by-step execution.
 
+## Tableau Projects
+
+**1.Sales Data Analysis**
+In this project we dive into sales dataset of an enterprise selling electronic products. It ranges from Jan 2019 to Jan 2020. The dataset has approx 186K rows contaning following most useful fields:
+
+a. Order ID <br>
+b. Product <br>
+c. Qty ordered <br>
+d. Sales amt <br>
+e. City
+
+We are answering following business questions :
+
+1. What is month-over-month sales Trend(Qty and Revenue) ?
+2. What are the top 10 products by Quantity ?
+3. What is the revenue by City ?
+4. What are total sale in dollars ?
+5. How many total products are sold ?
+
+Here is a link to the [dashboard](https://public.tableau.com/app/profile/mansi.vermani7229/viz/SalesDataAnalysis_17005173571260/Dashboard1)
+Insights/ findings
+1. Charging Cables are the most popular product categories followed by batteries and headphones.
+2. San Francisco alone has generated 24% of the total revenue for the period, followed by LA and New York city each contributing between 13% and 16% of total revenue.
+3. The revenues are higher in the months of April, July and October, 2019 ranging between $2.65M to $3.75M. However, it has peaked in the month of December 2019 to $4.61M
+
+This is the first iteration(V1) of the analysis. Based on stakeholders requirements, the next iteration would answer the following questions:
+1. What is the Hourly sales trend ?
+2. State-wise revenues distribution ?
+3. Top 10 products by revenue ?
+4. Bottom 5 products by Qty and Revenue ? 
 
