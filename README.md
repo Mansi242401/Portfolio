@@ -54,8 +54,7 @@ c. Qty ordered <br>
 d. Sales amt <br>
 e. City
 
-We are answering following business questions :
-
+Through this analysis, we are answering following business questions :
 1. What is month-over-month sales Trend(Qty and Revenue) ?
 2. What are the top 10 products by Quantity ?
 3. What is the revenue by City ?
