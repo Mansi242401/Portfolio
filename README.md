@@ -45,7 +45,8 @@ In this project I have used financial data set which includes Balance Sheet and 
 
 ## Tableau Projects
 
-**1. Sales Data Analysis**
+**1. Sales Data Analysis** <br>
+
 In this project we dive into sales dataset of an enterprise selling electronic products. It ranges from Jan 2019 to Jan 2020. The dataset has approx 186K rows contaning following most useful fields:
 
 a. Order ID <br>
