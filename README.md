@@ -45,7 +45,7 @@ In this project I have used financial data set which includes Balance Sheet and 
 
 ## Tableau Projects
 
-**1.Sales Data Analysis**
+**1. Sales Data Analysis**
 In this project we dive into sales dataset of an enterprise selling electronic products. It ranges from Jan 2019 to Jan 2020. The dataset has approx 186K rows contaning following most useful fields:
 
 a. Order ID <br>
@@ -71,5 +71,6 @@ This is the first iteration(V1) of the analysis. Based on stakeholders requireme
 1. What is the Hourly sales trend ?
 2. State-wise revenues distribution ?
 3. Top 10 products by revenue ?
-4. Bottom 5 products by Qty and Revenue ? 
+4. Bottom 5 products by Qty and Revenue ?
+5. Categorise products into segments.
 
