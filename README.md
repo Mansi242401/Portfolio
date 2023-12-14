@@ -2,7 +2,7 @@
 A portfolio showcasing case studies in SQL, Python and Tableau
 
 ## SQL Projects
-**1. Ecommerce Data analyst**
+**1. Ecommerce Data analysis**
 
 
 **2. Danny's Diner** 
