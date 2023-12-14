@@ -2,13 +2,15 @@
 A portfolio showcasing case studies in SQL, Python and Tableau
 
 ## SQL Projects
+**1. Ecommerce Data analyst**
 
-**1. Danny's Diner** 
+
+**2. Danny's Diner** 
 * [Code](https://github.com/Mansi242401/Portfolio/blob/main/sql_queries_with_results1.md) <br>
 
 * This is part of the 8 week SQL Challenge, by Danny Ma. You can find his challenge here: https://8weeksqlchallenge.com/case-study-1/
 
-**2. Pizza Runner**
+**3. Pizza Runner**
 * This project is divided into two parts -<br>
   1. Data Cleaning - Code for which is [here](https://github.com/Mansi242401/Portfolio/blob/main/sql_queries_with_results2a.md) and <br>
   2. Answering questions with Queries for first two parts - Code is [here](https://github.com/Mansi242401/Portfolio/blob/main/sql_queries_with_results2b.md)
@@ -18,15 +20,15 @@ A portfolio showcasing case studies in SQL, Python and Tableau
 
 ### SQL INTERVIEW QUESTIONS
 
-**3. SQL Interview Case Study**
+**1. SQL Interview Case Study**
 * This case study was asked in an interview by one of the most popular subscription-based streaming service company - Here's the complete [case study](https://github.com/Mansi242401/Portfolio/blob/main/sql_interview_case1.md)
 
-**4. SQL Interview Case Study**
+**2. SQL Interview Case Study**
 * This case study has two parts -
 * a) It has questions to test the applicant's ability to apply union - Here is the [link](https://github.com/Mansi242401/Portfolio/blob/main/sql_interview_case2.md) to the complete problem and its solution
 * b) It has questions to test and show how union is used with aggregate functions - Here is the [link](https://github.com/Mansi242401/Portfolio/blob/main/sql_interview_case_3.md)
 
-**5. SQL COALESCE CASE STUDY**
+**3. SQL COALESCE CASE STUDY**
 
 This use case showcases one of the ways of dealing with Null values - [code](https://github.com/Mansi242401/Portfolio/blob/main/sql_intervieiw_case4.md)
 
