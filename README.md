@@ -2,7 +2,7 @@
 A portfolio showcasing case studies in SQL, Python and Tableau
 
 ## SQL Projects
-**1. Ecommerce Data analysis**
+**1. Ecommerce Data Analysis**
 [Project link](https://github.com/Mansi242401/SQL-Ecommerce-data-analysis) <br>
 
 **2. Danny's Diner** 
