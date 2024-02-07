@@ -45,5 +45,9 @@ This use case showcases one of the ways of dealing with Null values - [code](htt
 
 In this project I have used financial data set which includes Balance Sheet and P&L Components of 29 companies. The data is in Json-like format in a text file and is required to be converted into tabular data in a google spreadhseet. Here is a [link](https://github.com/Mansi242401/text_df_googlesheet/tree/main) to the complete project with step-by-step execution.
 
+## Tableau Projects
+
+**1. Ecommerce Data Analysis
+
 
 
