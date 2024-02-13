@@ -47,7 +47,9 @@ In this project I have used financial data set which includes Balance Sheet and 
 
 ## Tableau Projects
 
-**1. Ecommerce Data Analysis
+**1. Ecommerce Data Analysis** [Project link](https://github.com/Mansi242401/SQL-Ecommerce-data-analysis)
+
+This is a project where i used SQL for querying the data and then tableau dashboard to display the visualizations of the requested KPIs.
 
 
 
